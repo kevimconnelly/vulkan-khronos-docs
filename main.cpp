@@ -1723,6 +1723,7 @@ private:
 
             for (const auto& layerProperties : availableLayers) {
                 if (strcmp(layerName, layerProperties.layerName) == 0) {
+                    std::cout << "layerfound" << "\n";
                     layerFound = true;
                     break;
                 }
