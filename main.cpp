@@ -42,7 +42,13 @@ const std::vector<const char*> validationLayers = {
 };
 
 const std::vector<const char*> deviceExtensions = {
-    VK_KHR_SWAPCHAIN_EXTENSION_NAME
+    VK_KHR_SWAPCHAIN_EXTENSION_NAME,
+    "VK_KHR_portability_subset",
+    "VK_KHR_get_physical_device_properties2",
+    VK_KHR_SURFACE_EXTENSION_NAME,
+    //VK_EXT_METAL_SURFACE_EXTENSION_NAME,
+    //VK_MVK_MACOS_SURFACE_EXTENSION_NAME,
+    VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME,
 };
 
 #ifdef NDEBUG
@@ -368,6 +374,16 @@ private:
         VkInstanceCreateInfo createInfo{};
         createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
         createInfo.pApplicationInfo = &appInfo;
+
+        const std::vector<const char*> exts =
+        {
+            VK_KHR_SURFACE_EXTENSION_NAME,
+            //VK_EXT_METAL_SURFACE_EXTENSION_NAME,
+            //VK_MVK_MACOS_SURFACE_EXTENSION_NAME,
+            VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME,
+        };
+
+        //ppEnabledExtensionNames = exts.data();
 
         auto extensions = getRequiredExtensions();
         createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
