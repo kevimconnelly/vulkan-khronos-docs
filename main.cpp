@@ -434,8 +434,13 @@ private:
         std::vector<VkPhysicalDevice> devices(deviceCount);
         vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
+        std::cout << "device(s): " << deviceCount << '\n';
+
         for (const auto& device : devices) {
+            
+
             if (isDeviceSuitable(device)) {
+                std::cout << "device: " << device << '\n';
                 physicalDevice = device;
                 msaaSamples = getMaxUsableSampleCount();
                 break;
