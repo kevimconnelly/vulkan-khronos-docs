@@ -435,6 +435,7 @@ private:
         vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
         std::cout << "device(s): " << deviceCount << '\n';
+        std::cout << "device data: " << devices.data() << '\n';
 
         for (const auto& device : devices) {
             
