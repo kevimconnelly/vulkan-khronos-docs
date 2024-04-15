@@ -44,7 +44,7 @@ const std::vector<const char*> validationLayers = {
 const std::vector<const char*> deviceExtensions = {
     VK_KHR_SWAPCHAIN_EXTENSION_NAME,
     "VK_KHR_portability_subset",
-    //"VK_KHR_get_physical_device_properties2",
+    "VK_KHR_get_physical_device_properties2",
     VK_KHR_SURFACE_EXTENSION_NAME,
     //VK_EXT_METAL_SURFACE_EXTENSION_NAME,
     //VK_MVK_MACOS_SURFACE_EXTENSION_NAME,
@@ -434,21 +434,13 @@ private:
         std::vector<VkPhysicalDevice> devices(deviceCount);
         vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
-        std::cout << "device count: " << deviceCount << '\n';
-        std::cout << "devices.size: " << devices.size() << '\n';
-
         for (const auto& device : devices) {
-            
-
             if (isDeviceSuitable(device)) {
-                std::cout << "device: " << device << '\n';
                 physicalDevice = device;
                 msaaSamples = getMaxUsableSampleCount();
                 break;
             }
         }
-
-        std::cout << "phys device: " << physicalDevice << '\n';
 
         if (physicalDevice == VK_NULL_HANDLE) {
             throw std::runtime_error("failed to find a suitable GPU!");
@@ -1649,7 +1641,14 @@ private:
     bool isDeviceSuitable(VkPhysicalDevice device) {
         QueueFamilyIndices indices = findQueueFamilies(device);
 
-        bool extensionsSupported = checkDeviceExtensionSupport(device);
+        std::cout << "indices.iscomplete: " << indices.isComplete() << "\n";
+        std::cout << "indices.presentfamily: " << indices.presentFamily.value() << "\n";
+        std::cout << "indices.graphicsfamily: " << indices.graphicsFamily.value() << "\n";
+
+        //bool extensionsSupported = checkDeviceExtensionSupport(device);
+        bool extensionsSupported = 1;
+
+        std::cout << "extensionsSupported: " << extensionsSupported << "\n";
 
         bool swapChainAdequate = false;
         if (extensionsSupported) {
