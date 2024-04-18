@@ -486,6 +486,9 @@ private:
         }
 
         if (vkCreateDevice(physicalDevice, &createInfo, nullptr, &device) != VK_SUCCESS) {
+            std::cout << "physical device: " << physicalDevice << "\n";
+            std::cout << "createInfo&: " << &createInfo << "\n";
+            std::cout << "&device: " << &device << "\n";
             throw std::runtime_error("failed to create logical device!");
         }
 
