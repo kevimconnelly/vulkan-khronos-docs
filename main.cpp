@@ -486,6 +486,7 @@ private:
         }
 
         if (vkCreateDevice(physicalDevice, &createInfo, nullptr, &device) != VK_SUCCESS) {
+            std::cout << "vkCreateDevice: " << vkCreateDevice(physicalDevice, &createInfo, nullptr, &device) << "\n";
             std::cout << "physical device: " << physicalDevice << "\n";
             std::cout << "createInfo&: " << &createInfo << "\n";
             std::cout << "&device: " << &device << "\n";
